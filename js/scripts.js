@@ -16,7 +16,7 @@ function whichClicked3(array1,array2,array3,array4,clickedNum){
 
 function winCheck(array,name){
   if(array.length ===3){
-    alert("Player " + name + " wins!!!");
+    alert("Player " + name + " wins!! Congrats!");
     return true;
   }else{
     return false;
@@ -35,7 +35,7 @@ function player(){
   this.diag2 = [];
 };
 
-player.prototype.isWin = function (name){
+player.prototype.isWin = function (name,num, letter){
   if(winCheck(this.down1,name)){return true;};
   if(winCheck(this.down2,name)){return true;};
   if(winCheck(this.down3,name)){return true;};
@@ -76,14 +76,13 @@ function isEven(value) {
 
 function resetGame(bool){
   if(bool){
-    alert("Congrats!");
-    window.location.reload();
+    $("div#playAgain").append("<button class='btn btn-info' onclick='window.location.reload();'>Play again?</button>");
   }
 }
 
 function catsGame(gameCount){
   if(gameCount ===9){
-    alert("Cat's Game (^',')");
+    alert("Cat's Game (=^.^=)");
     window.location.reload();
   }
 };
