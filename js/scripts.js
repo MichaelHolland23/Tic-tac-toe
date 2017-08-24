@@ -1,19 +1,137 @@
+function whichClicked(array1,array2,array3,clickedNum){
+    array1.push(clickedNum);
+    array2.push(clickedNum);
+    array3.push(clickedNum);
+};
+function whichClicked2(array1,array2,clickedNum){
+    array1.push(clickedNum);
+    array2.push(clickedNum);
+};
+function whichClicked3(array1,array2,array3,array4,clickedNum){
+    array1.push(clickedNum);
+    array2.push(clickedNum);
+    array3.push(clickedNum);
+    array4.push(clickedNum);
+};
+
+//when array fills with 3 numbers, then player wins
 function player(){
-  this.down1 = [0,0,0];
-  this.down2 = [0,0,0];
-  this.down3 = [0,0,0];
-  this.over1 = [0,0,0];
-  this.over2 = [0,0,0];
-  this.over3 = [0,0,0];
-  this.diag1 = [0,0,0];
-  this.diag2 = [0,0,0];
+  this.down1 = [];
+  this.down2 = [];
+  this.down3 = [];
+  this.over1 = [];
+  this.over2 = [];
+  this.over3 = [];
+  this.diag1 = [];
+  this.diag2 = [];
+};
+
+player.prototype.spaceAdd = function (clickedBox) {
+  if(clickedBox===1){
+    whichClicked(this.down1,this.over1,this.diag1,1);}
+  if(clickedBox===2){
+    whichClicked2(this.down1,this.over2,2);}
+  if(clickedBox===3){
+    whichClicked(this.down1,this.over3,this.diag2,3);}
+  if(clickedBox===4){
+    whichClicked2(this.down2,this.over1,4);}
+  if(clickedBox===5){
+    whichClicked3(this.down2,this.over2,this.diag1,this.diag2,5);}
+  if(clickedBox===6){
+    whichClicked2(this.down2,this.over3,6);}
+  if(clickedBox===7){
+    whichClicked(this.down3,this.over1,this.diag2,7);}
+  if(clickedBox===8){
+    whichClicked2(this.down3,this.over2,8);}
+  if(clickedBox===9){
+    whichClicked(this.down3,this.over3,this.diag1,9);}
+};
+
+function isEven(value) {
+	if (value%2 == 0)
+		return true;
+	else
+		return false;
 }
 
-var win1 = [1,2,3];
-var win2 = [4,5,6];
-var win3 = [7,8,9];
-var win4 = [3,5,7];
-var win5 = [1,5,9];
-var win6 = [1,4,7];
-var win7 = [3,6,9];
-var win8 = [2,5,8];
+function clickSpace(num,letter,whosTurn){
+  $("div#space"+num+"").append("<img src='img/"+letter+".png'>");
+  whosTurn.spaceAdd(num);
+  return 1;
+};
+
+$(document).ready(function(event){
+
+  var playerX = new player();
+  var playerO = new player();
+  var gameCount = 0;
+
+
+  $("div#space1").click(function(event) {
+    if(isEven(gameCount)){
+      gameCount += clickSpace(1,"x",playerX);
+    }else{
+      gameCount += clickSpace(1,"o",playerO);
+    }
+    alert(playerX.down1);
+  });
+  $("div#space2").click(function(event) {
+    if(isEven(gameCount)){
+      gameCount += clickSpace(2,"x",playerX);
+    }else{
+      gameCount += clickSpace(2,"o",playerO);
+    }
+    alert(playerX.down1);
+  });
+  $("div#space3").click(function(event) {
+    if(isEven(gameCount)){
+      gameCount += clickSpace(3,"x",playerX);
+    }else{
+      gameCount += clickSpace(3,"o",playerO);
+    }
+    alert(playerX.down1);
+  });
+  $("div#space4").click(function(event) {
+    if(isEven(gameCount)){
+      gameCount += clickSpace(4,"x",playerX);
+    }else{
+      gameCount += clickSpace(4,"o",playerO);
+    }
+  });
+  $("div#space5").click(function(event) {
+    if(isEven(gameCount)){
+      gameCount += clickSpace(5,"x",playerX);
+    }else{
+      gameCount += clickSpace(5,"o",playerO);
+    }
+  });
+  $("div#space6").click(function(event) {
+    if(isEven(gameCount)){
+      gameCount += clickSpace(6,"x",playerX);
+    }else{
+      gameCount += clickSpace(6,"o",playerO);
+    }
+  });
+  $("div#space7").click(function(event) {
+    if(isEven(gameCount)){
+      gameCount += clickSpace(7,"x",playerX);
+    }else{
+      gameCount += clickSpace(7,"o",playerO);
+    }
+  });
+  $("div#space8").click(function(event) {
+    if(isEven(gameCount)){
+      gameCount += clickSpace(8,"x",playerX);
+    }else{
+      gameCount += clickSpace(8,"o",playerO);
+    }
+  });
+  $("div#space9").click(function(event) {
+    if(isEven(gameCount)){
+      gameCount += clickSpace(9,"x",playerX);
+    }else{
+      gameCount += clickSpace(9,"o",playerO);
+    }
+  });
+
+});
